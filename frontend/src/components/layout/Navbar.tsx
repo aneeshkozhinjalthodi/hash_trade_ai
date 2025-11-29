@@ -11,14 +11,14 @@ const Navbar = () => {
         <header className="relative h-20 bg-slate-900/80 backdrop-blur-2xl border-b border-slate-700/50 shadow-lg">
             {/* Decorative gradient line */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-            
+
             <div className="h-full px-6 flex items-center justify-between">
                 {/* Left Section - Welcome Message */}
                 <div className="flex items-center gap-4">
                     <div>
                         <p className="text-slate-400 text-sm">Welcome back,</p>
                         <p className="text-white font-semibold text-lg">
-                            {user.name || ''}
+                            {user?.name || user?.email || 'User'}
                         </p>
                     </div>
                 </div>
@@ -58,11 +58,11 @@ const Navbar = () => {
                             className="flex items-center gap-3 p-2 pr-3 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 hover:border-blue-500/50 transition-all"
                         >
                             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg">
-                                {user.email[0].toUpperCase()}
+                                {user?.email?.[0]?.toUpperCase() || 'U'}
                             </div>
                             <div className="hidden lg:block text-left">
-                                <p className="text-white text-sm font-medium">{user.name}</p>
-                                <p className="text-slate-400 text-xs">{user.email}</p>
+                                <p className="text-white text-sm font-medium">{user?.name || 'User'}</p>
+                                <p className="text-slate-400 text-xs">{user?.email}</p>
                             </div>
                             <ChevronDown size={16} className={`text-slate-400 transition-transform ${showProfile ? 'rotate-180' : ''}`} />
                         </button>
@@ -73,15 +73,15 @@ const Navbar = () => {
                                 <div className="p-4 border-b border-slate-700/50 bg-gradient-to-br from-blue-500/10 to-purple-600/10">
                                     <div className="flex items-center gap-3">
                                         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                                            {user.email[0].toUpperCase()}
+                                            {user?.email?.[0]?.toUpperCase() || 'U'}
                                         </div>
                                         <div>
-                                            <p className="text-white font-semibold">{user.name}</p>
-                                            <p className="text-slate-400 text-xs">{user.email}</p>
+                                            <p className="text-white font-semibold">{user?.name || 'User'}</p>
+                                            <p className="text-slate-400 text-xs">{user?.email}</p>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="p-2">
                                     <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/50 text-slate-300 hover:text-white transition-all">
                                         <User size={18} />

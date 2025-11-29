@@ -1,34 +1,34 @@
-import { TrendingUp, DollarSign, Activity, BarChart3, ArrowUpRight, ArrowDownRight, Zap, Target, TrendingDown } from 'lucide-react';
+import { TrendingUp, DollarSign, Activity, BarChart3, ArrowUpRight, ArrowDownRight, Zap, Target } from 'lucide-react';
 import { useAuthStore } from '../store/auth';
 
 const Dashboard = () => {
     const { user } = useAuthStore();
 
     const stats = [
-        { 
-            label: 'Total P&L', 
-            value: '+₹12,450', 
-            change: '+5.2%', 
+        {
+            label: 'Total P&L',
+            value: '+₹12,450',
+            change: '+5.2%',
             changeType: 'up',
-            icon: DollarSign, 
+            icon: DollarSign,
             iconBg: 'from-green-500 to-emerald-600',
             glowColor: 'bg-green-500/20'
         },
-        { 
-            label: 'Active Positions', 
-            value: '4', 
-            change: '2 New', 
+        {
+            label: 'Active Positions',
+            value: '4',
+            change: '2 New',
             changeType: 'neutral',
-            icon: Activity, 
+            icon: Activity,
             iconBg: 'from-blue-500 to-cyan-600',
             glowColor: 'bg-blue-500/20'
         },
-        { 
-            label: 'Win Rate', 
-            value: '68%', 
-            change: '+2.1%', 
+        {
+            label: 'Win Rate',
+            value: '68%',
+            change: '+2.1%',
             changeType: 'up',
-            icon: TrendingUp, 
+            icon: TrendingUp,
             iconBg: 'from-purple-500 to-pink-600',
             glowColor: 'bg-purple-500/20'
         },
@@ -106,20 +106,20 @@ const Dashboard = () => {
                             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                 Dashboard
                             </h2>
-                            <p className="text-slate-400 text-sm">Welcome back, {user.email}</p>
+                            <p className="text-slate-400 text-sm">Welcome back, {user?.email}</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {stats.map((stat, index) => {
+                    {stats.map((stat) => {
                         const Icon = stat.icon;
                         return (
                             <div key={stat.label} className="relative group">
                                 <div className={`absolute -top-2 -left-2 w-20 h-20 ${stat.glowColor} rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
                                 <div className={`absolute -bottom-2 -right-2 w-20 h-20 ${stat.glowColor} rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
-                                
+
                                 <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl p-6 shadow-xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
                                     <div className="flex justify-between items-start mb-4">
                                         <div>
@@ -132,7 +132,7 @@ const Dashboard = () => {
                                             <Icon size={24} className="text-white" />
                                         </div>
                                     </div>
-                                    
+
                                     <div className="flex items-center gap-2 pt-4 border-t border-slate-700/50">
                                         {stat.changeType === 'up' && (
                                             <div className="flex items-center gap-1 bg-green-500/10 border border-green-500/30 px-2 py-1 rounded-lg">
@@ -165,7 +165,7 @@ const Dashboard = () => {
                     {/* Recent Activity */}
                     <div className="relative">
                         <div className="absolute -top-2 -left-2 w-20 h-20 bg-blue-500/20 rounded-full blur-xl" />
-                        
+
                         <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
                             <div className="bg-gradient-to-r from-blue-500/10 to-purple-600/10 border-b border-slate-700/50 p-6">
                                 <div className="flex items-center gap-2">
@@ -173,12 +173,12 @@ const Dashboard = () => {
                                     <h3 className="text-xl font-bold text-white">Recent Activity</h3>
                                 </div>
                             </div>
-                            
+
                             <div className="p-6">
                                 <div className="space-y-4">
                                     {recentActivities.map((activity) => (
-                                        <div 
-                                            key={activity.id} 
+                                        <div
+                                            key={activity.id}
                                             className="flex items-center justify-between p-4 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 hover:border-blue-500/30 transition-all cursor-pointer group"
                                         >
                                             <div className="flex items-center gap-4">
@@ -207,7 +207,7 @@ const Dashboard = () => {
                     {/* Market Overview */}
                     <div className="relative">
                         <div className="absolute -top-2 -right-2 w-20 h-20 bg-purple-500/20 rounded-full blur-xl" />
-                        
+
                         <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
                             <div className="bg-gradient-to-r from-purple-500/10 to-pink-600/10 border-b border-slate-700/50 p-6">
                                 <div className="flex items-center gap-2 mb-2">
@@ -218,38 +218,35 @@ const Dashboard = () => {
                                     Markets showing strong momentum. Tech sector leading gains with institutional support.
                                 </p>
                             </div>
-                            
+
                             <div className="p-6">
                                 <div className="space-y-4">
                                     {marketData.map((market, index) => (
-                                        <div 
+                                        <div
                                             key={index}
                                             className="p-4 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 hover:border-purple-500/30 transition-all"
                                         >
                                             <div className="flex items-center justify-between mb-2">
                                                 <p className="text-slate-400 text-sm font-medium">{market.index}</p>
-                                                <div className={`flex items-center gap-1 px-2 py-1 rounded-lg ${
-                                                    market.isUp 
-                                                        ? 'bg-green-500/10 border border-green-500/30' 
+                                                <div className={`flex items-center gap-1 px-2 py-1 rounded-lg ${market.isUp
+                                                        ? 'bg-green-500/10 border border-green-500/30'
                                                         : 'bg-red-500/10 border border-red-500/30'
-                                                }`}>
+                                                    }`}>
                                                     {market.isUp ? (
                                                         <ArrowUpRight size={14} className="text-green-400" />
                                                     ) : (
                                                         <ArrowDownRight size={14} className="text-red-400" />
                                                     )}
-                                                    <span className={`text-xs font-semibold ${
-                                                        market.isUp ? 'text-green-400' : 'text-red-400'
-                                                    }`}>
+                                                    <span className={`text-xs font-semibold ${market.isUp ? 'text-green-400' : 'text-red-400'
+                                                        }`}>
                                                         {market.percent}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div className="flex items-baseline gap-2">
                                                 <p className="text-2xl font-bold text-white">{market.value}</p>
-                                                <p className={`text-sm font-medium ${
-                                                    market.isUp ? 'text-green-400' : 'text-red-400'
-                                                }`}>
+                                                <p className={`text-sm font-medium ${market.isUp ? 'text-green-400' : 'text-red-400'
+                                                    }`}>
                                                     {market.change}
                                                 </p>
                                             </div>

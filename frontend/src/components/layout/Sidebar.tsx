@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { 
-    LayoutDashboard, 
-    TrendingUp, 
-    Newspaper, 
-    Settings, 
-    LogOut, 
-    HelpCircle, 
-    Menu, 
+import {
+    LayoutDashboard,
+    TrendingUp,
+    Newspaper,
+    Settings,
+    LogOut,
+    HelpCircle,
+    Menu,
     FileText,
-    ChevronRight,
     Zap,
     BarChart3
 } from 'lucide-react';
@@ -35,7 +34,7 @@ const Sidebar = () => {
     const handleLogout = () => {
         if (window.confirm('Are you sure you want to logout?')) {
             console.log('Logging out...');
-            // Add your logout logic here
+            logout();
         }
     };
 
@@ -51,7 +50,7 @@ const Sidebar = () => {
         `}>
             {/* Decorative gradient line */}
             <div className="absolute top-0 right-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/50 to-transparent" />
-            
+
             {/* Animated background gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent opacity-50" />
 
@@ -75,7 +74,7 @@ const Sidebar = () => {
                             <TrendingUp className="text-white" size={22} />
                         </div>
                     )}
-                    
+
                     {!isMinimized && (
                         <button
                             onClick={() => setIsMinimized(!isMinimized)}
@@ -86,7 +85,7 @@ const Sidebar = () => {
                         </button>
                     )}
                 </div>
-                
+
                 {isMinimized && (
                     <button
                         onClick={() => setIsMinimized(!isMinimized)}
@@ -101,22 +100,22 @@ const Sidebar = () => {
             {/* Navigation Items */}
             <nav className="relative flex-1 p-4 overflow-y-auto">
                 <div className="space-y-2">
-<nav className="flex-1 px-4 space-y-2">
-                {navItems.map((item) => (
-                    <Link
-                        key={item.path}
-                        to={item.path}
-                        className={`flex items-center ${isMinimized ? 'justify-center' : 'space-x-3'} px-4 py-3 rounded-lg transition-colors w-full ${isActive(item.path)
-                            ? 'bg-blue-600 text-white'
-                            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                            }`}
-                        title={isMinimized ? item.label : ''}
-                    >
-                        <item.icon size={20} />
-                        {!isMinimized && <span>{item.label}</span>}
-                    </Link>
-                ))}
-            </nav>
+                    <nav className="flex-1 px-4 space-y-2">
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                className={`flex items-center ${isMinimized ? 'justify-center' : 'space-x-3'} px-4 py-3 rounded-lg transition-colors w-full ${isActive(item.path)
+                                    ? 'bg-blue-600 text-white'
+                                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                    }`}
+                                title={isMinimized ? item.label : ''}
+                            >
+                                <item.icon size={20} />
+                                {!isMinimized && <span>{item.label}</span>}
+                            </Link>
+                        ))}
+                    </nav>
                 </div>
 
                 {/* Market Status Card */}
@@ -124,13 +123,13 @@ const Sidebar = () => {
                     <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/20 relative overflow-hidden">
                         {/* Animated pulse */}
                         <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/20 rounded-full blur-2xl animate-pulse" />
-                        
+
                         <div className="relative">
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                                 <span className="text-green-400 font-semibold text-sm">Markets Open</span>
                             </div>
-                            
+
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center">
                                     <span className="text-slate-400 text-xs">NIFTY 50</span>

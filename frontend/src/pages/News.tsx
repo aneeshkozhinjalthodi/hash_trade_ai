@@ -25,8 +25,8 @@ const News = () => {
         };
         fetchNews();
     }, []);
-    
-    const getSentimentConfig = (sentiment) => {
+
+    const getSentimentConfig = (sentiment: string | null | undefined) => {
         switch (sentiment?.toLowerCase()) {
             case 'positive':
                 return {
@@ -148,19 +148,19 @@ const News = () => {
                             </div>
                         </div>
                     ) : (
-                        news.map((item, index) => {
+                        news.map((item) => {
                             const sentimentConfig = getSentimentConfig(item.sentiment_score);
                             const SentimentIcon = sentimentConfig.icon;
-                            
+
                             return (
                                 <div key={item.id} className="relative group">
                                     <div className="absolute -top-2 -left-2 w-20 h-20 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                     <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-purple-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    
+
                                     <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl shadow-xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden">
                                         {/* Decorative gradient bar */}
                                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        
+
                                         <div className="p-6">
                                             {/* Header */}
                                             <div className="flex justify-between items-start gap-4 mb-4">
@@ -196,7 +196,7 @@ const News = () => {
                                                         <span className="font-medium text-slate-400">{item.source}</span>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <a
                                                     href={item.url}
                                                     target="_blank"
@@ -204,9 +204,9 @@ const News = () => {
                                                     className="flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-medium transition-colors group/link"
                                                 >
                                                     Read More
-                                                    <ExternalLink 
-                                                        size={16} 
-                                                        className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" 
+                                                    <ExternalLink
+                                                        size={16}
+                                                        className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform"
                                                     />
                                                 </a>
                                             </div>

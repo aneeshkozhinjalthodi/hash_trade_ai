@@ -6,7 +6,6 @@ import Dashboard from '../pages/Dashboard';
 import TradeIdeas from '../pages/TradeIdeas';
 import News from '../pages/News';
 import Settings from '../pages/Settings';
-import LiveStocks from '../pages/LiveStocks';
 import Layout from '../components/layout/Layout';
 
 // --- AUTH HELPERS ---
@@ -39,7 +38,6 @@ export const AppRouter = () => {
                         <Route path="/" element={<Navigate to="/dashboard" replace />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/trade-ideas" element={<TradeIdeas />} />
-                        <Route path="/stocks" element={<LiveStocks />} />
                         <Route path="/news" element={<News />} />
                         <Route path="/settings" element={<Settings />} />
                     </Route>

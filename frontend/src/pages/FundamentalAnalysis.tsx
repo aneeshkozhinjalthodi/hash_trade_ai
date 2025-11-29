@@ -3,7 +3,7 @@ import { Search, FileText, Briefcase, TrendingUp, BarChart3, Target, Award, Aler
 
 const FundamentalAnalysis = () => {
     const [symbol, setSymbol] = useState('');
-    const [analysis, setAnalysis] = useState(null);
+    const [analysis, setAnalysis] = useState<{ symbol: string; analysis: string } | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -60,7 +60,7 @@ At current levels, the stock trades at a **premium valuation** compared to peers
         }, 2000);
     };
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             handleAnalyze();
         }
@@ -137,7 +137,7 @@ At current levels, the stock trades at a **premium valuation** compared to peers
                 <div className="relative mb-8">
                     <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl" />
                     <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl" />
-                    
+
                     <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 p-8 rounded-2xl shadow-2xl">
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 relative">
@@ -200,7 +200,7 @@ At current levels, the stock trades at a **premium valuation** compared to peers
                         <div className="relative">
                             <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl" />
                             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl" />
-                            
+
                             <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden">
                                 {/* Header */}
                                 <div className="bg-gradient-to-r from-blue-500/10 to-purple-600/10 border-b border-slate-700/50 p-6">
@@ -226,7 +226,7 @@ At current levels, the stock trades at a **premium valuation** compared to peers
                                 {/* Analysis Content */}
                                 <div className="p-8">
                                     <div className="prose prose-invert max-w-none">
-                                        {analysis.analysis.split('\n').map((line, idx) => {
+                                        {analysis.analysis.split('\n').map((line: string, idx: number) => {
                                             if (line.startsWith('# ')) {
                                                 return <h1 key={idx} className="text-3xl font-bold text-white mb-4 mt-8 first:mt-0">{line.replace('# ', '')}</h1>;
                                             } else if (line.startsWith('## ')) {

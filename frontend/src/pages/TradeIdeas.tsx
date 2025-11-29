@@ -43,7 +43,7 @@ const TradeIdeas = () => {
     };
 
     // Group ideas by date
-    const groupedIdeas = ideas.reduce((groups, idea) => {
+    const groupedIdeas = ideas.reduce((groups: Record<string, any[]>, idea) => {
         const date = new Date(idea.created_at).toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
@@ -55,7 +55,7 @@ const TradeIdeas = () => {
         }
         groups[date].push(idea);
         return groups;
-    }, {});
+    }, {} as Record<string, any[]>);
 
     return (
         <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
@@ -121,7 +121,7 @@ const TradeIdeas = () => {
                                 <p className="text-slate-400 text-sm">AI-powered swing trading opportunities</p>
                             </div>
                         </div>
-                        
+
                         <div className="flex gap-3">
                             <button
                                 onClick={handleClearAll}
@@ -169,7 +169,7 @@ const TradeIdeas = () => {
                                     <div key={idea.id} className="relative group">
                                         <div className="absolute -top-2 -left-2 w-20 h-20 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                         <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-purple-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        
+
                                         <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl p-6 shadow-xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
                                             {/* Header */}
                                             <div className="flex justify-between items-start mb-5">
@@ -178,11 +178,10 @@ const TradeIdeas = () => {
                                                         <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
                                                             {idea.symbol}
                                                         </h3>
-                                                        <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
-                                                            idea.direction === 'BUY'
+                                                        <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${idea.direction === 'BUY'
                                                                 ? 'bg-green-500/10 text-green-400 border border-green-500/30'
                                                                 : 'bg-red-500/10 text-red-400 border border-red-500/30'
-                                                        }`}>
+                                                            }`}>
                                                             {idea.direction}
                                                         </span>
                                                     </div>
@@ -238,10 +237,10 @@ const TradeIdeas = () => {
                         <div className="relative">
                             <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl" />
                             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl" />
-                            
+
                             <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl p-16 shadow-2xl text-center">
                                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-2xl mb-6">
-                                        <Sparkles className="text-blue-400" size={40} />
+                                    <Sparkles className="text-blue-400" size={40} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">No Trade Ideas Yet</h3>
                                 <p className="text-slate-400 mb-8 max-w-md mx-auto">

@@ -10,6 +10,7 @@ import News from './pages/News';
 import Help from './pages/Help';
 import Settings from './pages/Settings';
 import FundamentalAnalysis from './pages/FundamentalAnalysis';
+import LandingPage from './pages/LandingPage';
 
 function App() {
     const { isAuthenticated, fetchUser } = useAuthStore();
@@ -21,6 +22,7 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route path='/' element={<LandingPage />} />
                 <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
                 <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" />} />
 

@@ -71,7 +71,7 @@ const Settings = () => {
                     <div className="lg:col-span-1">
                         <div className="relative">
                             <div className="absolute -top-2 -left-2 w-20 h-20 bg-blue-500/20 rounded-full blur-xl" />
-                            
+
                             <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl p-4 shadow-xl">
                                 <div className="space-y-2">
                                     {tabs.map((tab) => {
@@ -84,8 +84,8 @@ const Settings = () => {
                                                 className={`
                                                     w-full flex items-center gap-3 px-4 py-3 rounded-xl
                                                     transition-all duration-200 group
-                                                    ${isActive 
-                                                        ? 'bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/30 text-white' 
+                                                    ${isActive
+                                                        ? 'bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/30 text-white'
                                                         : 'text-slate-400 hover:bg-slate-800/50 hover:text-white border border-transparent'
                                                     }
                                                 `}
@@ -104,7 +104,7 @@ const Settings = () => {
                     <div className="lg:col-span-3">
                         <div className="relative">
                             <div className="absolute -top-2 -right-2 w-24 h-24 bg-purple-500/20 rounded-full blur-xl" />
-                            
+
                             <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
                                 {/* Profile Tab */}
                                 {activeTab === 'profile' && (
@@ -113,12 +113,12 @@ const Settings = () => {
                                             <h3 className="text-xl font-bold text-white">Profile Information</h3>
                                             <p className="text-slate-400 text-sm mt-1">Manage your personal information and account details</p>
                                         </div>
-                                        
+
                                         <div className="p-6 space-y-6">
                                             {/* Profile Picture */}
                                             <div className="flex items-center gap-6">
                                                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg">
-                                                    {user.email[0].toUpperCase()}
+                                                    {user?.email?.[0]?.toUpperCase() || 'U'}
                                                 </div>
                                                 <div>
                                                     <button className="bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-400 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
@@ -135,7 +135,7 @@ const Settings = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    defaultValue={user.name}
+                                                    defaultValue={user?.name || ''}
                                                     className="w-full bg-slate-800/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
                                                 />
                                             </div>
@@ -148,7 +148,7 @@ const Settings = () => {
                                                 </label>
                                                 <input
                                                     type="email"
-                                                    value={user.email}
+                                                    value={user?.email || ''}
                                                     disabled
                                                     className="w-full bg-slate-800/30 border border-slate-600/30 rounded-xl px-4 py-3 text-slate-400 cursor-not-allowed"
                                                 />
@@ -162,7 +162,7 @@ const Settings = () => {
                                                     Account Role
                                                 </label>
                                                 <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-600/50 px-4 py-2.5 rounded-xl">
-                                                    {user.is_superuser ? (
+                                                    {user?.is_superuser ? (
                                                         <>
                                                             <div className="w-2 h-2 bg-purple-400 rounded-full" />
                                                             <span className="text-purple-400 font-semibold text-sm">Super Admin</span>
@@ -194,7 +194,7 @@ const Settings = () => {
                                             <h3 className="text-xl font-bold text-white">Notification Preferences</h3>
                                             <p className="text-slate-400 text-sm mt-1">Choose what notifications you want to receive</p>
                                         </div>
-                                        
+
                                         <div className="p-6 space-y-4">
                                             {[
                                                 { label: 'Trade Idea Alerts', desc: 'Get notified when new AI trade ideas are generated' },
@@ -224,7 +224,7 @@ const Settings = () => {
                                             <h3 className="text-xl font-bold text-white">Security Settings</h3>
                                             <p className="text-slate-400 text-sm mt-1">Manage your password and security options</p>
                                         </div>
-                                        
+
                                         <div className="p-6 space-y-6">
                                             <div>
                                                 <label className="block text-sm font-medium text-slate-300 mb-2">Current Password</label>
@@ -267,7 +267,7 @@ const Settings = () => {
                                             <h3 className="text-xl font-bold text-white">Application Preferences</h3>
                                             <p className="text-slate-400 text-sm mt-1">Customize your trading experience</p>
                                         </div>
-                                        
+
                                         <div className="p-6 space-y-6">
                                             <div>
                                                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">

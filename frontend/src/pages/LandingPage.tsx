@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // SVG Icons Component
 const SvgIcons = {
@@ -59,8 +59,16 @@ const SvgIcons = {
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
     ),
-    Star: () => (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    Star: ({ className = "" }) => (
+        <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={className}
+        >
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
         </svg>
     ),
@@ -178,7 +186,7 @@ const Navigation = () => (
 );
 
 // Hero Section Component
-const HeroSection = ({ isVisible }) => {
+const HeroSection = ({ }) => {
     const stats = [
         { number: "99.8%", label: "Risk Management Accuracy" },
         { number: "24/7", label: "Auto-Hedging Protection" },
@@ -189,7 +197,7 @@ const HeroSection = ({ isVisible }) => {
     return (
         <section className="relative z-10 pt-20 pb-32 px-8">
             <div className="max-w-7xl mx-auto text-center">
-                <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                <div className={`transition-all duration-1000 transform translate-y-0 opacity-100`}>
                     <h1 className="text-5xl md:text-7xl font-bold mb-6">
                         <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                             AI-Powered
@@ -492,7 +500,7 @@ const TestimonialsSection = () => {
 const CTASection = () => {
     const [email, setEmail] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         alert(`Thank you! We'll contact you at ${email}`);
         setEmail("");
@@ -569,18 +577,12 @@ const Footer = () => (
 );
 
 // Main App Component
-export default function App() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
-
+export default function LandingPage() {
     return (
         <div className="min-h-screen relative overflow-hidden">
             <AnimatedBackground />
             <Navigation />
-            <HeroSection isVisible={isVisible} />
+            <HeroSection />
             <FeaturesSection />
             <PricingSection />
             <TestimonialsSection />

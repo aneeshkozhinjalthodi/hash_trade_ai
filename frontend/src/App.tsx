@@ -22,19 +22,23 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<LandingPage />} />
-                <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
-                <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" />} />
+                {/* Public routes */}
+                <Route path='/' element={!isAuthenticated ? <LandingPage /> : <Navigate to="/dashboard" />} />
+                <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />} />
+                <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />} />
 
+                {/* Protected routes */}
                 <Route element={<Layout />}>
-                    <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
-                    <Route path="/dashboard" element={<Navigate to="/" replace />} />
+                    <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
                     <Route path="/ideas" element={isAuthenticated ? <TradeIdeas /> : <Navigate to="/login" />} />
                     <Route path="/news" element={isAuthenticated ? <News /> : <Navigate to="/login" />} />
                     <Route path="/analysis" element={isAuthenticated ? <FundamentalAnalysis /> : <Navigate to="/login" />} />
                     <Route path="/help" element={isAuthenticated ? <Help /> : <Navigate to="/login" />} />
                     <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
                 </Route>
+
+                {/* Redirect root to appropriate page based on auth status */}
+                <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />} />
             </Routes>
         </Router>
     );
